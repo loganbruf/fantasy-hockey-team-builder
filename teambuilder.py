@@ -54,7 +54,13 @@ def build_team(sorted_arr, day):
     print("Goalies", gs, end="\n\n")
 
 csv = input("Enter the name of the csv file: ")
-players_data = pd.read_csv(csv)
+try:
+    players_data = pd.read_csv(csv)
+except:
+    print("Error reading file. Please check the name of the file, reopen the program and try again.")
+    input('Press ENTER to exit')
+    exit()
+
 players_array = np.array(players_data.to_numpy())
 sorted_arr = players_array[players_array[:, 4].argsort()] #sorts players array by priority
 
